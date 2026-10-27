@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "zona_ro",
+        "centru": [
+          26.0,
+          44.6
+        ],
+        "latura_km": 10
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              25.936919,
+              44.555084
+            ],
+            [
+              26.063081,
+              44.555084
+            ],
+            [
+              26.063081,
+              44.644916
+            ],
+            [
+              25.936919,
+              44.644916
+            ],
+            [
+              25.936919,
+              44.555084
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

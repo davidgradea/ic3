@@ -1,0 +1,67 @@
+{
+  "patches": 2433,
+  "patches_per_fold": {
+    "1": 487,
+    "2": 494,
+    "3": 474,
+    "4": 482,
+    "5": 496
+  },
+  "patches_per_tile": {
+    "t30uxv": 531,
+    "t31tfj": 623,
+    "t31tfm": 723,
+    "t32ulu": 556
+  },
+  "parcels_total": 152397,
+  "s2_period": [
+    20180917,
+    20191027
+  ],
+  "s2_dates_per_patch": [
+    38,
+    61
+  ],
+  "s1a_dates_per_patch": [
+    65,
+    71
+  ],
+  "s1d_dates_per_patch": [
+    69,
+    70
+  ],
+  "split_config_I": {
+    "train": 1455,
+    "val": 482,
+    "test": 496
+  },
+  "missing_files": {},
+  "s2_without_annotation": 35,
+  "pixel_share_pct": {
+    "Fundal": 39.91,
+    "Pajiște": 18.29,
+    "Grâu moale de toamnă": 6.86,
+    "Porumb": 8.66,
+    "Orz de toamnă": 2.03,
+    "Rapiță de toamnă": 1.77,
+    "Orz de primăvară": 0.64,
+    "Floarea-soarelui": 0.99,
+    "Viță-de-vie": 2.78,
+    "Sfeclă": 0.81,
+    "Triticale de toamnă": 0.74,
+    "Grâu dur de toamnă": 1.05,
+    "Legume, fructe, flori": 0.94,
+    "Cartofi": 0.28,
+    "Leguminoase furajere": 1.59,
+    "Soia": 1.05,
+    "Livadă": 1.03,
+    "Cereale amestec": 0.52,
+    "Sorg": 0.42,
+    "Void (ignorat)": 9.63
+  },
+  "void_pct": 9.63,
+  "background_pct": 39.91,
+  "ndvi_patches_used": 300,
+  "s2_nan_values_in_subset": 0,
+  "s2_cloudy_pixel_pct_in_subset": 15.0
+}

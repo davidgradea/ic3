@@ -1,0 +1,26 @@
+# Date (nu ajung pe GitHub)
+PASTIS-R/
+RO_2024/
+data/
+export/
+*.zip
+*.npy
+*.tif
+*.tiff
+
+# Mediu Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Credentiale
+.config/
+credentials*
+*.json.key
+
+# Fisiere de sistem
+Thumbs.db
+desktop.ini
+.DS_Store
