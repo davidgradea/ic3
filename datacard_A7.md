@@ -10,18 +10,18 @@
 
 ## 1. Sursele de date
 
-| Câmp | PASTIS-R (sursă, Franța) | Sentinel-2 România (țintă) | DACIA5 (validare externă, opțional) |
-|---|---|---|---|
-| **Rol** | antrenare, validare, test în domeniul sursă | aplicare / test pe RO; fine-tuning pe k parcele | test extern pe RO cu etichete verificate pe teren |
-| **Sursă** | Zenodo, DOI 10.5281/zenodo.5735646 (PASTIS-R.zip, 53,7 GB); cod: github.com/VSainteuf/pastis-benchmark | Google Earth Engine: `COPERNICUS/S2_SR_HARMONIZED` + `GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED`; opțional `COPERNICUS/S1_GRD` | Zenodo, DOI 10.5281/zenodo.14915950 |
-| **Perioadă** | S2: 17.09.2018 – 27.10.2019; S1 pe aceeași fereastră | sezon agricol 01.09.2023 – 31.10.2024 (anul recoltei 2024) | 2020 – 2024 |
-| **Zonă** | 4 tile-uri S2 în Franța metropolitană (t30uxv, t31tfj, t31tfm, t32ulu), ~4.000 km² | pătrat 10 × 10 km centrat la 26,0° E, 44,6° N (sud de București), `zona_ro.geojson` | nord de Brașov |
-| **Rezoluție spațială** | 10 m; patch-uri 128 × 128 px (1,28 km) | 10 m (benzile de 20 m reeșantionate) | 10 m; patch-uri 32 × 32 px |
-| **Rezoluție temporală** | S2: 38–61 date / patch (neregulat, ~5 zile minus nori); S1A: 65–71 date; S1D: 69–70 date | revizitare S2 ~5 zile; număr efectiv de date utile în `RO_2024/s2_inventory.csv` | 172 imagini S2, 159 imagini S1 în 5 ani |
-| **Unități** | S2: reflectanță ×10⁴, int16, 10 benzi (B2, B3, B4, B5, B6, B7, B8, B8A, B11, B12); S1: dB, float16, 3 canale (VV, VH, VV/VH); etichetă: uint8 0–19 | S2: reflectanță ×10⁴, aceleași 10 benzi, aceeași ordine; Cloud Score+: `cs_cdf` 0–1 | S2: 12 benzi; S1: 2 benzi |
-| **Eșantioane** | 2.433 patch-uri; 124.422 parcele (oficial); 18 culturi + fundal + void | 1 zonă; parcele etichetate manual: 30–50 (în lucru) | 6.454 patch-uri S2, 5.995 patch-uri S1 |
-| **Etichete** | LPIS francez 2019 (declarații fermieri), semantice + pe instanță | manuale, de autor, după protocol scris (doar parcele cu cultură clară) | in situ, verificate pe teren |
-| **Licență** | CC BY 4.0 | date Copernicus: utilizare liberă, cu atribuire | CC BY 4.0 |
+| Câmp | PASTIS-R (sursă, Franța) | Sentinel-2 România (țintă) |
+|---|---|---|
+| **Rol** | antrenare, validare, test în domeniul sursă | aplicare / test pe RO; fine-tuning pe k parcele |
+| **Sursă** | Zenodo, DOI 10.5281/zenodo.5735646 (PASTIS-R.zip, 53,7 GB); cod: github.com/VSainteuf/pastis-benchmark | Google Earth Engine: `COPERNICUS/S2_SR_HARMONIZED` + `GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED`; opțional `COPERNICUS/S1_GRD` |
+| **Perioadă** | S2: 17.09.2018 – 27.10.2019; S1 pe aceeași fereastră | sezon agricol 01.09.2023 – 31.10.2024 (anul recoltei 2024) |
+| **Zonă** | 4 tile-uri S2 în Franța metropolitană (t30uxv, t31tfj, t31tfm, t32ulu), ~4.000 km² | pătrat 10 × 10 km centrat la 26,0° E, 44,6° N (sud de București), `zona_ro.geojson` |
+| **Rezoluție spațială** | 10 m; patch-uri 128 × 128 px (1,28 km) | 10 m (benzile de 20 m reeșantionate) |
+| **Rezoluție temporală** | S2: 38–61 date / patch (neregulat, ~5 zile minus nori); S1A: 65–71 date; S1D: 69–70 date | revizitare S2 ~5 zile; număr efectiv de date utile în `RO_2024/s2_inventory.csv` |
+| **Unități** | S2: reflectanță ×10⁴, int16, 10 benzi (B2, B3, B4, B5, B6, B7, B8, B8A, B11, B12); S1: dB, float16, 3 canale (VV, VH, VV/VH); etichetă: uint8 0–19 | S2: reflectanță ×10⁴, aceleași 10 benzi, aceeași ordine; Cloud Score+: `cs_cdf` 0–1 |
+| **Eșantioane** | 2.433 patch-uri; 124.422 parcele (oficial); 18 culturi + fundal + void | 1 zonă; parcele etichetate manual: 30–50 (în lucru) |
+| **Etichete** | LPIS francez 2019 (declarații fermieri), semantice + pe instanță | manuale, de autor, după protocol scris (doar parcele cu cultură clară) |
+| **Licență** | CC BY 4.0 | date Copernicus: utilizare liberă, cu atribuire |
 
 ### Nomenclatura PASTIS și taxonomia comună FR ↔ RO
 
@@ -49,7 +49,7 @@ Procentele sunt calculate de pipeline pe toate cele 2.433 de patch-uri (`outputs
 |---|---|---|---|---|---|
 | Patch-uri | 487 | 494 | 474 | 482 | 496 |
 
-**România:** domeniu țintă. Zero-shot: modelul antrenat pe FR se aplică direct. Few-shot: fine-tuning pe k ∈ {5, 10, 20} parcele etichetate, iar restul parcelelor etichetate rămân doar pentru test. Parcelele de test nu ajung niciodată în fine-tuning. Test extern opțional pe DACIA5 (an nevăzut, 2024).
+**România:** domeniu țintă. Zero-shot: modelul antrenat pe FR se aplică direct. Few-shot: fine-tuning pe k ∈ {5, 10, 20} parcele etichetate, iar restul parcelelor etichetate rămân doar pentru test. Parcelele de test nu ajung niciodată în fine-tuning.
 
 ## 3. Goluri și limitări
 

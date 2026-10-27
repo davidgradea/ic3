@@ -5,7 +5,7 @@ Client: APIA → selecția parcelelor pentru control pe teren.
 
 ## Date
 
-| Set | Unde | Folder local (nu se urcă pe GitHub) |
+| Set | Unde | Folder local  |
 |---|---|---|
 | PASTIS-R (S1 + S2, Franța) | https://zenodo.org/record/5735646 (CC BY 4.0, 54 GB) | `PASTIS-R/` |
 | Sentinel-2 pe zona RO | Google Earth Engine, `zona_ro.geojson` | `RO_2024/` |
@@ -24,8 +24,8 @@ pip install -r requirements.txt
 python src/verify_pastis.py --root PASTIS-R --out outputs
 
 # 2. Seria Sentinel-2 pe zona din România (necesită: earthengine authenticate)
-python src/gee_export_s2_ro.py --aoi zona_ro.geojson --year 2024 --out RO_2024 --project <proiect-gcp> --no-tif   # doar inventar + NDVI
-python src/gee_export_s2_ro.py --aoi zona_ro.geojson --year 2024 --out RO_2024 --project <proiect-gcp>            # + GeoTIFF-uri
+python src/gee_export_s2_ro.py --aoi zona_ro.geojson --year 2024 --out RO_2024 --project <proiect-gcp> --no-tif   
+python src/gee_export_s2_ro.py --aoi zona_ro.geojson --year 2024 --out RO_2024 --project <proiect-gcp>            
 ```
 
 Ieșiri: `outputs/pastis_stats.json`, `outputs/ndvi_curves_fr.json`, `outputs/ndvi_per_clasa_fr.png`.
